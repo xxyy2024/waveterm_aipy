@@ -7,6 +7,8 @@
             "meta": {
                 "view": "term",
                 "controller": "shell"
+                "controller": "cmd",
+                "cmd":"aipy"
             }
         }
     },
