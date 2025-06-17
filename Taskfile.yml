@@ -16,12 +16,34 @@ vars:
     WINGET_PACKAGE: CommandLine.Wave
 
 tasks:
+    check:aipyapp:
+        desc: Check and install Python package aipyapp
+        cmds:
+            - cmd: |
+                  {{if eq OS "windows"}}
+                  if (Get-Command python3 -ErrorAction SilentlyContinue) {
+                      python3 tools/check_aipyapp.py
+                  } else {
+                      Write-Output "未找到 Python3，请安装 Python3 以检查/安装 aipyapp。"
+                      exit 1
+                  }
+                  {{else}}
+                  if command -v python3 >/dev/null 2>&1; then
+                      python3 tools/check_aipyapp.py
+                  else
+                      echo "未找到 Python3，请安装 Python3 以检查/安装 aipyapp。"
+                      exit 1
+                  fi
+                  {{end}}
+              silent: true
+
     electron:dev:
         desc: Run the Electron application via the Vite dev server (enables hot reloading).
         cmd: yarn dev
         aliases:
             - dev
         deps:
+            - check:aipyapp # 添加依赖
             - yarn
             - docsite:build:embedded
             - build:backend
@@ -110,6 +132,8 @@ tasks:
 
     build:backend:
         desc: Build the wavesrv and wsh components.
+        deps:
+            - check:aipyapp # 添加依赖
         cmds:
             - task: build:server
             - task: build:wsh
