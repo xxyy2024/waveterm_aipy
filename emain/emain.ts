@@ -703,3 +703,74 @@ appMain().catch((e) => {
     console.log("appMain error", e);
     electronApp.quit();
 });
+
+import { spawn } from "child_process";
+import * as os from "os";
+
+const pipCmd = os.platform() === "win32" ? "pip" : "pip3";
+
+/**
+ * 检查 pip 包是否已安装
+ */
+function isPackageInstalled(pkg: string): Promise<boolean> {
+    return new Promise((resolve) => {
+        const check = spawn(pipCmd, ["show", pkg]);
+        check.on("close", (code) => resolve(code === 0));
+        check.on("error", () => resolve(false));
+    });
+}
+
+/**
+ * 安装 pip 包并实时输出日志
+ */
+function installPackage(pkg: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        console.log(`[pip] 正在安装 ${pkg}...`);
+        const install = spawn(pipCmd, ["install", pkg, "--break-system-packages"]);
+
+        install.stdout.on("data", (data) => {
+            process.stdout.write(`[pip:${pkg}] ${data}`);
+        });
+
+        install.stderr.on("data", (data) => {
+            process.stderr.write(`[pip:${pkg} ERROR] ${data}`);
+        });
+
+        install.on("close", (code) => {
+            if (code === 0) {
+                console.log(`[pip] ${pkg} 安装成功`);
+                resolve();
+            } else {
+                reject(new Error(`[pip] ${pkg} 安装失败，退出码 ${code}`));
+            }
+        });
+
+        install.on("error", (err) => {
+            reject(new Error(`[pip] 无法启动安装 ${pkg}: ${err.message}`));
+        });
+    });
+}
+
+/**
+ * 并行处理多个包的检测和安装
+ */
+async function installPackagesWithLogs(packages: string[]) {
+    const installTasks = packages.map(async (pkg) => {
+        const installed = await isPackageInstalled(pkg);
+        if (installed) {
+            console.log(`[pip] ${pkg} 已安装，跳过`);
+        } else {
+            try {
+                await installPackage(pkg);
+            } catch (err) {
+                console.error(err.message);
+            }
+        }
+    });
+
+    await Promise.all(installTasks);
+}
+
+// 你可以在这里指定任意 pip 包
+installPackagesWithLogs(["aipyapp"]);
+
