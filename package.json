@@ -4,13 +4,45 @@
         "name": "Command Line Inc",
         "email": "info@commandline.dev"
     },
-    "productName": "Wave",
+    "productName": "Wave-AiPy",
     "description": "Open-Source AI-Native Terminal Built for Seamless Workflows",
     "license": "Apache-2.0",
     "version": "0.11.3",
     "homepage": "https://waveterm.dev",
     "build": {
-        "appId": "dev.commandline.waveterm"
+        "appId": "dev.commandline.waveterm-aipy",
+        "productName": "WaveTerm-AIPY",
+        "asar": true,
+        "mac": {
+            "target": [
+                "dmg"
+            ],
+            "dmg": {
+                "license": "build/license.txt"
+            },
+            "icon": "build/icon.icns"
+        },
+        "win": {
+            "target": [
+                "nsis",
+                "msi"
+            ],
+            "icon": "build/icon.ico"
+        },
+        "linux": {
+            "target": [
+                "deb",
+                "rpm",
+                "AppImage",
+                "snap"
+            ],
+            "icon": "build/icon.png",
+            "category": "Development"
+        },
+        "files": [
+            "dist/**/*",
+            "emain/**/*"
+        ]
     },
     "private": true,
     "main": "./dist/main/index.js",
@@ -63,7 +95,7 @@
         "@vitejs/plugin-react-swc": "^3.8.0",
         "@vitest/coverage-istanbul": "^3.0.5",
         "electron": "34.5.4",
-        "electron-builder": "^26.0",
+        "electron-builder": "26.0.12",
         "electron-vite": "^2.3.0",
         "eslint": "^9.20.1",
         "eslint-config-prettier": "^10.0.1",
@@ -116,6 +148,8 @@
         "css-tree": "^3.1.0",
         "dayjs": "^1.11.13",
         "debug": "^4.4.0",
+        "dmg-builder": "26.0.12",
+        "dmg-license": "^1.0.11",
         "electron-updater": "^6.6",
         "env-paths": "^3.0.0",
         "fast-average-color": "^9.4.0",
