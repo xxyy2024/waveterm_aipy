@@ -108,6 +108,17 @@ tasks:
             - docsite:build:embedded
             - build:backend
 
+    package:all:
+        desc: Package the application for all platforms.
+        cmds:
+            - cmd: '{{.RMRF}} "make"'
+              ignore_error: true
+            - yarn build:prod && yarn electron-builder -c electron-builder.config.cjs -mwl -p never
+        deps:
+            - yarn
+            - docsite:build:embedded
+            - build:backend
+
     build:backend:
         desc: Build the wavesrv and wsh components.
         cmds:

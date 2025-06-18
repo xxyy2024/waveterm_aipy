@@ -1,0 +1,46 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - main   # 或者你的默认分支
+  pull_request:
+    branches:
+      - main   # 当 PR 合并到主分支时触发构建
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 默认在 Ubuntu 环境中构建，可以修改为 macos-latest 来进行 macOS 构建
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]  # 同时支持 Ubuntu 和 macOS 构建
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # 检出代码
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # 使用你所需要的 Node.js 版本
+
+      - name: Install dependencies
+        run: |
+          npm ci  # 或 yarn install
+
+      - name: Build Electron app
+        run: |
+          npm run build  # 或 yarn build
+
+      - name: Package Electron app for Linux and macOS
+        run: |
+          npx electron-builder --linux  # 构建 Linux 包
+          npx electron-builder --mac    # 构建 macOS 包
+
+      - name: Upload Artifacts (Optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-app
+          path: dist/  # 这里假设你会把打包好的文件放到 dist 文件夹里
+
