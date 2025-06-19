@@ -1,0 +1,5 @@
+#!/home/guoleijie/下载/Python-3.11.1/python-embed/bin/python3.11
+
+import pydoc
+if __name__ == '__main__':
+    pydoc.cli()
