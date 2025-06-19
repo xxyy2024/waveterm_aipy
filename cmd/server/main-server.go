@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"runtime"
 	"sync"
@@ -276,6 +277,27 @@ func clearTempFiles() error {
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 	log.SetPrefix("[wavesrv] ")
+
+	// 获取当前文件的绝对路径
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		log.Panic("Unable to get caller info")
+	}
+
+	// 获取父目录，再取父的父目录
+	parent := filepath.Dir(filename)
+	parentX := filepath.Dir(parent)
+
+	grandparent := filepath.Dir(parentX)
+
+	// 设置到环境变量 PROJECT_PWD
+	if err := os.Setenv("PROJECT_PWD", grandparent); err != nil {
+		log.Panic("Unable to set PROJECT_PWD: " + err.Error())
+	}
+
+	// 测试打印
+	log.Println("PROJECT_PWD set to:", os.Getenv("PROJECT_PWD"))
+
 	wavebase.WaveVersion = WaveVersion
 	wavebase.BuildTime = BuildTime
 
