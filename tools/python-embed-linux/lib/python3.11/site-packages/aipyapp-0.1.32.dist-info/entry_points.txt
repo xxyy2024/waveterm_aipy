@@ -1,0 +1,5 @@
+[console_scripts]
+aipy = aipyapp.__main__:main
+
+[gui_scripts]
+aipyw = aipyapp.__main__:mainw
