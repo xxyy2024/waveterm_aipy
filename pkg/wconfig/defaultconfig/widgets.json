@@ -7,7 +7,7 @@
             "meta": {
                 "view": "term",
                 "controller": "cmd",
-                "cmd": "$PROJECT_PWD/tools/run_aipyapp.sh"
+                "cmd": "$AIPY_TOOLS/run_aipyapp.sh"
             }
         }
     },
