@@ -1,0 +1,5 @@
+#!/home/guoleijie/下载/Python-3.11.1/python-embed/bin/python3.11
+import sys
+from lib2to3.main import main
+
+sys.exit(main("lib2to3.fixes"))
