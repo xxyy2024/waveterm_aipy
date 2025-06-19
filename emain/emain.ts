@@ -711,6 +711,6 @@ appMain().catch((e) => {
 function getToolsPath(): string {
     const basePath = electronApp.isPackaged
         ? path.join(process.resourcesPath, "tools")
-        : path.resolve(__dirname, "../../tools"); // 注意：__dirname 是 emain/
+        : path.resolve(__dirname, "../../tools"); // 编译到dist下了
     return basePath;
 }
