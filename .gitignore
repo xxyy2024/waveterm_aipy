@@ -34,5 +34,7 @@ test-results.xml
 
 docsite/
 # python
+!tools/**/bin/
 tools/**/*.pyc
+
 
