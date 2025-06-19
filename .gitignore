@@ -33,3 +33,6 @@ storybook-static/
 test-results.xml
 
 docsite/
+# python
+*.pyc
+
