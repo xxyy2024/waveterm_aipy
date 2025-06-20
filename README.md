@@ -85,3 +85,17 @@ Find more information in our [Contributions Guide](CONTRIBUTING.md), which inclu
 ## License
 
 Wave Terminal is licensed under the Apache-2.0 License. For more information on our dependencies, see [here](./ACKNOWLEDGEMENTS.md).
+
+## Python 解释器
+
+```bash
+
+brew install python@3.11
+python3.11 -m venv python-embed-mac-arm64
+./python-embed-mac-arm64/bin/python3 -m ensurepip --upgrade
+./python-embed-mac-arm64/bin/pip install aipyapp
+cd python-embed-mac-arm64
+rm -rf ./include
+rm -rf ./lib/python3.11/test
+rm -rf ./lib/python3.11/pycache
+# copy python-embed-mac-arm64 to target
