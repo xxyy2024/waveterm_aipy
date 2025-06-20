@@ -30,27 +30,16 @@ const config = {
     directories: {
         output: "make",
     },
-    extraResources: [
-        "tools/python-embed/**/*", // Windows 嵌入式 Python
-        "tools/python-embed-linux/**/*", // Linux 嵌入式 Python
-        "tools/run_aipyapp.sh",
-    ],
-    asarUnpack: [
-        "dist/bin/**/*",
-        "dist/docsite/**/*",
-        "tools/python-embed/**/*", // 确保 Python 环境可执行
-        "tools/python-embed-linux/**/*",
-        "tools/run_aipyapp.sh",
-    ],
+    extraResources: ["tools/run_aipyapp.sh"],
     mac: {
         target: [
             {
                 target: "zip",
-                arch: ["universal", "arm64", "x64"],
+                arch: ["arm64", "x64"],
             },
             {
                 target: "dmg",
-                arch: ["universal", "arm64", "x64"],
+                arch: ["arm64", "x64"],
             },
         ],
         category: "public.app-category.developer-tools",
@@ -72,6 +61,10 @@ const config = {
             NSLocationUsageDescription: "A CLI application running in Wave wants to use your location information.",
             NSAppleEventsUsageDescription: "A CLI application running in Wave wants to use AppleScript.",
         },
+        extraResources: [
+            "tools/python-embed-mac-x86_64/**/*", // mac 嵌入式 Python intel
+            "tools/python-embed-mac-arm64/**/*", // mac  嵌入式 Python m 芯片
+        ],
     },
     linux: {
         artifactName: "${name}-${platform}-${arch}-${version}.${ext}",
@@ -89,6 +82,9 @@ const config = {
             },
         },
         executableArgs: ["--enable-features", "UseOzonePlatform", "--ozone-platform-hint", "auto"],
+        extraResources: [
+            "tools/python-embed-linux/**/*", // Linux 嵌入式 Python
+        ],
     },
     deb: {
         afterInstall: "build/deb-postinstall.tpl",
@@ -101,6 +97,9 @@ const config = {
             certificateSubjectName: "Command Line Inc",
             certificateSha1: process.env.SM_CODE_SIGNING_CERT_SHA1_HASH,
         },
+        extraResources: [
+            //嵌入式 Python
+        ],
     },
     appImage: {
         license: "LICENSE",
