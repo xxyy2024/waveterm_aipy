@@ -31,6 +31,15 @@ const config = {
         output: "make",
     },
     extraResources: ["tools/run_aipyapp.sh"],
+    asarUnpack: [
+        "dist/bin/**/*",
+        "dist/docsite/**/*",
+        "tools/python-embed/**/*",
+        "tools/python-embed-linux/**/*",
+        "tools/python-embed-mac-x86_64/**/*",
+        "tools/python-embed-mac-arm64/**/*",
+        "tools/run_aipyapp.sh",
+    ],
     mac: {
         target: [
             {
@@ -61,10 +70,7 @@ const config = {
             NSLocationUsageDescription: "A CLI application running in Wave wants to use your location information.",
             NSAppleEventsUsageDescription: "A CLI application running in Wave wants to use AppleScript.",
         },
-        extraResources: [
-            "tools/python-embed-mac-x86_64/**/*", // mac 嵌入式 Python intel
-            "tools/python-embed-mac-arm64/**/*", // mac  嵌入式 Python m 芯片
-        ],
+        extraResources: ["tools/python-embed-mac-x86_64/**/*", "tools/python-embed-mac-arm64/**/*"],
     },
     linux: {
         artifactName: "${name}-${platform}-${arch}-${version}.${ext}",
@@ -98,7 +104,7 @@ const config = {
             certificateSha1: process.env.SM_CODE_SIGNING_CERT_SHA1_HASH,
         },
         extraResources: [
-            //嵌入式 Python
+            "tools/python-embed/**/*", // Windows 嵌入式 Python
         ],
     },
     appImage: {
