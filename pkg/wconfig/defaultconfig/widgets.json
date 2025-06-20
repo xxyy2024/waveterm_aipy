@@ -7,7 +7,10 @@
             "meta": {
                 "view": "term",
                 "controller": "cmd",
-                "cmd": "$AIPY_TOOLS/run_aipyapp.sh"
+                "cmd": "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\"",
+                "shell_cmd": "$AIPY_TOOLS/run_aipyapp.sh",
+                "win_cmd": "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\"",
+                "_comment": "emain.ts 处理cmd"
             }
         }
     },

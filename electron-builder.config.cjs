@@ -30,7 +30,7 @@ const config = {
     directories: {
         output: "make",
     },
-    extraResources: ["tools/run_aipyapp.sh"],
+    extraResources: ["tools/run_aipyapp.sh", "tools/run_aipyapp.ps1"],
     asarUnpack: [
         "dist/bin/**/*",
         "dist/docsite/**/*",
@@ -39,6 +39,7 @@ const config = {
         "tools/python-embed-mac-x86_64/**/*",
         "tools/python-embed-mac-arm64/**/*",
         "tools/run_aipyapp.sh",
+        "tools/run_aipyapp.ps1",
     ],
     mac: {
         target: [

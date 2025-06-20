@@ -19,8 +19,8 @@ elif [[ "$OS_TYPE" == "Linux" ]]; then
   # Linux 平台
   PYTHON_DIR="tools/python-embed-linux"
 else
-  echo "不支持的操作系统: $OS_TYPE"
-  exit 1
+  # window 平台
+  PYTHON_DIR="tools/python-embed"
 fi
 
 # 设置 PYTHONPATH

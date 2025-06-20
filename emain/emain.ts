@@ -712,5 +712,28 @@ function getToolsPath(): string {
     const basePath = electronApp.isPackaged
         ? path.join(process.resourcesPath, "tools")
         : path.resolve(__dirname, "../../tools"); // 编译到dist下了
+
+    // Windows 平台时，修正 widgets.json 的 defwidget@terminal 的 blockdef.meta.cmd
+    const widgetsJsonPath = electronApp.isPackaged
+        ? path.join(process.resourcesPath, "pkg", "wconfig", "defaultconfig", "widgets.json")
+        : path.resolve(__dirname, "../../pkg/wconfig/defaultconfig/widgets.json");
+    try {
+        const widgets = JSON.parse(fs.readFileSync(widgetsJsonPath, "utf-8"));
+        const terminal = widgets["defwidget@terminal"];
+        if (terminal && terminal.blockdef && terminal.blockdef.meta) {
+            if (process.platform === "win32") {
+                terminal.blockdef.meta.cmd =  terminal.blockdef.meta.win_cmd;
+            } else {
+                terminal.blockdef.meta.cmd =  terminal.blockdef.meta.shell_cmd;
+            }
+            fs.writeFileSync(widgetsJsonPath, JSON.stringify(widgets, null, 4), "utf-8");
+        }
+        // 修改后的内容，写回到json文件
+        fs.writeFileSync(widgetsJsonPath, JSON.stringify(widgets, null, 4), "utf-8");
+        console.log("widgets.json patched successfully");
+        console.log("widgetsJsonPath:", widgetsJsonPath);
+    } catch (e) {
+        console.error("Error patching widgets.json:", e);
+    }
     return basePath;
 }
