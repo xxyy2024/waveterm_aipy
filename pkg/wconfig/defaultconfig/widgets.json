@@ -1,6 +1,6 @@
 {
     "defwidget@terminal": {
-        "display:order": -4,
+        "display:order": -5,
         "icon": "sparkles",
         "label": "aipy",
         "blockdef": {
@@ -10,6 +10,21 @@
                 "cmd": "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\"",
                 "shell_cmd": "$AIPY_TOOLS/run_aipyapp.sh",
                 "win_cmd": "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\"",
+                "_comment": "emain.ts 处理cmd"
+            }
+        }
+    },
+    "defwidget@prompt": {
+        "display:order": -4,
+        "icon": "brain",
+        "label": "prompt",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "cmd",
+                "cmd": "& \"$Env:AIPY_TOOLS\\run_prompt.ps1\"",
+                "shell_cmd": "$AIPY_TOOLS/run_prompt.sh",
+                "win_cmd": "& \"$Env:AIPY_TOOLS\\run_prompt.ps1\"",
                 "_comment": "emain.ts 处理cmd"
             }
         }

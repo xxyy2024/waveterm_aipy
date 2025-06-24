@@ -206,6 +206,7 @@ function globalRefocus() {
 
 function getDefaultNewBlockDef(): BlockDef {
     const adnbAtom = getSettingsKeyAtom("app:defaultnewblock");
+    console.log("===========================xxxx============================");
     const adnb = globalStore.get(adnbAtom) ?? "term";
     if (adnb == "launcher") {
         return {
@@ -213,12 +214,14 @@ function getDefaultNewBlockDef(): BlockDef {
                 view: "launcher",
             },
         };
+        console.log("=======================================================");
     }
     // "term", blank, anything else, fall back to terminal
     const termBlockDef: BlockDef = {
         meta: {
             view: "term",
-            controller: "shell",
+            controller: "cmd",
+            cmd: "$AIPY_TOOLS/run_aipyapp.sh",
         },
     };
     const layoutModel = getLayoutModelForStaticTab();

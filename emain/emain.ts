@@ -722,12 +722,23 @@ function getToolsPath(): string {
         const terminal = widgets["defwidget@terminal"];
         if (terminal && terminal.blockdef && terminal.blockdef.meta) {
             if (process.platform === "win32") {
-                terminal.blockdef.meta.cmd =  terminal.blockdef.meta.win_cmd;
+                terminal.blockdef.meta.cmd = terminal.blockdef.meta.win_cmd;
             } else {
-                terminal.blockdef.meta.cmd =  terminal.blockdef.meta.shell_cmd;
+                terminal.blockdef.meta.cmd = terminal.blockdef.meta.shell_cmd;
             }
-            fs.writeFileSync(widgetsJsonPath, JSON.stringify(widgets, null, 4), "utf-8");
         }
+
+        const prompt = widgets["defwidget@prompt"];
+        if (prompt && prompt.blockdef && prompt.blockdef.meta) {
+            if (process.platform === "win32") {
+                prompt.blockdef.meta.cmd = prompt.blockdef.meta.win_cmd;
+            } else {
+                prompt.blockdef.meta.cmd = prompt.blockdef.meta.shell_cmd;
+            }
+        }
+
+        fs.writeFileSync(widgetsJsonPath, JSON.stringify(widgets, null, 4), "utf-8");
+
         // 修改后的内容，写回到json文件
         fs.writeFileSync(widgetsJsonPath, JSON.stringify(widgets, null, 4), "utf-8");
         console.log("widgets.json patched successfully");
