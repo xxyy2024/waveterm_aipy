@@ -43,3 +43,4 @@ importlib.util
 
 .idea/
 tools/prompt-optimizer/
+tools/prompt-optimizer/linux/app
