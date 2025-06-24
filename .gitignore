@@ -42,5 +42,4 @@ sys
 importlib.util
 
 .idea/
-
-
+tools/prompt-optimizer/
