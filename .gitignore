@@ -37,4 +37,10 @@ docsite/
 !tools/**/bin/
 tools/**/*.pyc
 
+re
+sys
+importlib.util
+
+.idea/
+
 
