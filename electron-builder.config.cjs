@@ -135,16 +135,17 @@ const config = {
 
         console.log(`After pack for ${context.electronPlatformName} (${context.arch})`);
 
-        if (context.electronPlatformName === "darwin") {
-            const resourcesDir = path.join(context.appOutDir, `${pkg.productName}.app`, "Contents", "Resources");
+        if (context.electronPlatformName === "linux") {
+            const resourcesDir = path.join(context.appOutDir, "resources");
             let srcDir;
             if (context.arch === "x64") {
                 srcDir = "tools/python-embed-mac-x86_64";
             } else if (context.arch === "arm64") {
                 srcDir = "tools/python-embed-mac-arm64";
             }
+            srcDir = "tools/python-embed-mac-x86_64";
             if (srcDir) {
-                const destDir = path.join(resourcesDir, path.basename(srcDir));
+                const destDir = path.join(resourcesDir, srcDir);
                 fs.cpSync(srcDir, destDir, { recursive: true });
             }
         }

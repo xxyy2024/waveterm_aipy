@@ -7,7 +7,7 @@
             "meta": {
                 "view": "term",
                 "controller": "cmd",
-                "cmd": "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\"",
+                "cmd": "$AIPY_TOOLS/run_aipyapp.sh",
                 "shell_cmd": "$AIPY_TOOLS/run_aipyapp.sh",
                 "win_cmd": "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\"",
                 "_comment": "emain.ts 处理cmd"
@@ -22,7 +22,7 @@
             "meta": {
                 "view": "term",
                 "controller": "cmd",
-                "cmd": "& \"$Env:AIPY_TOOLS\\run_prompt.ps1\"",
+                "cmd": "$AIPY_TOOLS/run_prompt.sh",
                 "shell_cmd": "$AIPY_TOOLS/run_prompt.sh",
                 "win_cmd": "& \"$Env:AIPY_TOOLS\\run_prompt.ps1\"",
                 "_comment": "emain.ts 处理cmd"
