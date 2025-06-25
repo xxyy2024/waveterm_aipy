@@ -37,9 +37,9 @@ docsite/
 !tools/**/bin/
 tools/**/*.pyc
 
-<<<<<<< HEAD
 
-=======
+
+
 re
 sys
 importlib.util
@@ -47,4 +47,4 @@ importlib.util
 .idea/
 tools/prompt-optimizer/
 tools/prompt-optimizer/linux/app
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
+

@@ -30,11 +30,7 @@ const config = {
     directories: {
         output: "make",
     },
-<<<<<<< HEAD
-    extraResources: ["tools/run_aipyapp.sh", "tools/run_aipyapp.ps1"],
-=======
     extraResources: ["tools/*.sh", "tools/*.ps1", "tools/*.yaml"],
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
     asarUnpack: [
         "dist/bin/**/*",
         "dist/docsite/**/*",
@@ -42,14 +38,9 @@ const config = {
         "tools/python-embed-linux/**/*",
         "tools/python-embed-mac-x86_64/**/*",
         "tools/python-embed-mac-arm64/**/*",
-<<<<<<< HEAD
-        "tools/run_aipyapp.sh",
-        "tools/run_aipyapp.ps1",
-=======
         "tools/*.sh",
         "tools/*.ps1",
         "tools/*.yaml",
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
     ],
     mac: {
         target: [
@@ -81,22 +72,14 @@ const config = {
             NSLocationUsageDescription: "A CLI application running in Wave wants to use your location information.",
             NSAppleEventsUsageDescription: "A CLI application running in Wave wants to use AppleScript.",
         },
-<<<<<<< HEAD
-        extraResources: ["tools/python-embed-mac-x86_64/**/*", "tools/python-embed-mac-arm64/**/*"],
-=======
         extraResources: ["tools/prompt-optimizer/mac/**/*"],
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
     },
     linux: {
         artifactName: "${name}-${platform}-${arch}-${version}.${ext}",
         category: "TerminalEmulator",
         executableName: pkg.name,
-<<<<<<< HEAD
-        target: ["zip", "deb", "rpm", "snap", "AppImage", "pacman"],
-=======
         // target: ["zip", "deb", "rpm", "snap", "AppImage", "pacman"],
         target: ["AppImage"],
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
         synopsis: pkg.description,
         description: null,
         desktop: {
@@ -108,13 +91,7 @@ const config = {
             },
         },
         executableArgs: ["--enable-features", "UseOzonePlatform", "--ozone-platform-hint", "auto"],
-<<<<<<< HEAD
-        extraResources: [
-            "tools/python-embed-linux/**/*", // Linux 嵌入式 Python
-        ],
-=======
         extraResources: ["tools/python-embed-linux/**/*", "tools/prompt-optimizer/linux/**/*"],
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
     },
     deb: {
         afterInstall: "build/deb-postinstall.tpl",
@@ -129,10 +106,7 @@ const config = {
         },
         extraResources: [
             "tools/python-embed/**/*", // Windows 嵌入式 Python
-<<<<<<< HEAD
-=======
             "tools/prompt-optimizer/win/**/*",
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
         ],
     },
     appImage: {
@@ -161,8 +135,6 @@ const config = {
                 .filter((f) => f.isFile() && f.name.startsWith("wavesrv"))
                 .forEach((f) => fs.chmodSync(path.resolve(f.parentPath ?? f.path, f.name), 0o755));
         }
-<<<<<<< HEAD
-=======
 
         if (context.electronPlatformName === "darwin") {
             const resourcesDir = path.join(context.appOutDir, `${pkg.productName}.app`, "Contents", "Resources");
@@ -177,7 +149,6 @@ const config = {
                 fs.cpSync(srcDir, destDir, { recursive: true });
             }
         }
->>>>>>> b38fa878093519204e2733ad558b24d47765f5c6
     },
 };
 
