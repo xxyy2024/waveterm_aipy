@@ -24,7 +24,9 @@ else
 fi
 
 # 设置 PYTHONPATH
-export PYTHONPATH="${BASE_DIR}:${BASE_DIR}/aipyapp:${BASE_DIR}/${PYTHON_DIR}/lib/python3.x/site-packages"
+export PYTHONPATH="${BASE_DIR}/${PYTHON_DIR}/lib/python3.x/site-packages"
+export PYTHONHOME="${BASE_DIR}/${PYTHON_DIR}"
+
 
 # 启动 Python 应用
 "${BASE_DIR}/${PYTHON_DIR}/bin/python3" -c "from aipyapp.__main__ import main; main()"

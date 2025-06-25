@@ -18,8 +18,13 @@ if (-not (Test-Path $PYTHON_EXEC)) {
 }
 
 # 设置 PYTHONPATH
-$Env:PYTHONPATH = "$BASE_DIR;$BASE_DIR\aipyapp;$BASE_DIR\$PYTHON_DIR\Lib\site-packages"
+$Env:PYTHONPATH = "$BASE_DIR\$PYTHON_DIR\Lib\site-packages"
 Write-Output "PYTHONPATH: $Env:PYTHONPATH"
+
+$Env:PYTHONHOME = "$BASE_DIR\$PYTHON_DIR"
+Write-Output "PYTHONHOME: $Env:PYTHONHOME"
+
 
 # 启动 Python 应用
 & $PYTHON_EXEC -c "from aipyapp.__main__ import main; main()"
+
