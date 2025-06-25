@@ -46,10 +46,6 @@ const config = {
     mac: {
         target: [
             {
-                target: "zip",
-                arch: ["arm64", "x64"],
-            },
-            {
                 target: "dmg",
                 arch: ["arm64", "x64"],
             },
@@ -136,6 +132,8 @@ const config = {
                 .filter((f) => f.isFile() && f.name.startsWith("wavesrv"))
                 .forEach((f) => fs.chmodSync(path.resolve(f.parentPath ?? f.path, f.name), 0o755));
         }
+
+        console.log(`After pack for ${context.electronPlatformName} (${context.arch})`);
 
         if (context.electronPlatformName === "darwin") {
             const resourcesDir = path.join(context.appOutDir, `${pkg.productName}.app`, "Contents", "Resources");
