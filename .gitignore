@@ -45,6 +45,7 @@ sys
 importlib.util
 
 .idea/
-tools/prompt-optimizer/
-tools/prompt-optimizer/linux/app
+tools/prompt-optimizer/linux/*
+tools/prompt-optimizer/mac/*
+tools/prompt-optimizer/win/*
 
