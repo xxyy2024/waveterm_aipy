@@ -135,7 +135,7 @@ const config = {
 
         console.log(`After pack for ${context.electronPlatformName} (${context.arch})`);
 
-        if (context.electronPlatformName === "linux") {
+        if (context.electronPlatformName === "darwin") {
             const resourcesDir = path.join(context.appOutDir, "resources");
             let srcDir;
             if (context.arch === "x64") {
