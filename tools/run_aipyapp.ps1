@@ -2,26 +2,25 @@
 $BASE_DIR = Resolve-Path (Join-Path $PSScriptRoot ".." -Resolve)
 
 # 设置 Python 嵌入目录
-$PYTHON_DIR = "tools/python-embed"  # 使用 / 确保 PowerShell 兼容性
+$PYTHON_DIR = [IO.Path]::Combine("tools", "python-embed")  # 使用 / 确保 PowerShell 兼容性
 
-# 调试：打印路径
-Write-Output "BASE_DIR: $BASE_DIR"
-Write-Output "PYTHON_DIR: $PYTHON_DIR"
+
+
 
 # 构建 Python 解释器路径
-$PYTHON_EXEC = Join-Path (Join-Path $BASE_DIR $PYTHON_DIR) "python.exe"
+$PYTHON_EXEC = [IO.Path]::Combine( $BASE_DIR, $PYTHON_DIR, "python.exe")
 
 # 验证 Python 解释器
 if (-not (Test-Path $PYTHON_EXEC)) {
-    Write-Error "Error: python.exe not found at $PYTHON_EXEC"
-    exit 1
+	Write-Error "Error: python.exe not found at $PYTHON_EXEC"
+	exit 1
 }
 
 # 设置 PYTHONPATH
-$Env:PYTHONPATH = "$BASE_DIR\$PYTHON_DIR\Lib\site-packages"
+$Env:PYTHONPATH = [IO.Path]::Combine($BASE_DIR, $PYTHON_DIR, "Lib", "site-packages")
 Write-Output "PYTHONPATH: $Env:PYTHONPATH"
 
-$Env:PYTHONHOME = "$BASE_DIR\$PYTHON_DIR"
+$Env:PYTHONHOME = [IO.Path]::Combine($BASE_DIR, $PYTHON_DIR)
 Write-Output "PYTHONHOME: $Env:PYTHONHOME"
 
 
