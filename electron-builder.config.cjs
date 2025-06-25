@@ -69,7 +69,11 @@ const config = {
             NSLocationUsageDescription: "A CLI application running in Wave wants to use your location information.",
             NSAppleEventsUsageDescription: "A CLI application running in Wave wants to use AppleScript.",
         },
-        extraResources: ["tools/prompt-optimizer/mac/**/*"],
+        extraResources: [
+            "tools/prompt-optimizer/mac/**/*",
+            "tools/python-embed-mac-x86_64",
+            "tools/python-embed-mac-arm64",
+        ],
     },
     linux: {
         artifactName: "${name}-${platform}-${arch}-${version}.${ext}",
@@ -131,23 +135,6 @@ const config = {
             })
                 .filter((f) => f.isFile() && f.name.startsWith("wavesrv"))
                 .forEach((f) => fs.chmodSync(path.resolve(f.parentPath ?? f.path, f.name), 0o755));
-        }
-
-        console.log(`After pack for ${context.electronPlatformName} (${context.arch})`);
-
-        if (context.electronPlatformName === "darwin") {
-            const resourcesDir = path.join(context.appOutDir, "resources");
-            let srcDir;
-            if (context.arch === "x64") {
-                srcDir = "tools/python-embed-mac-x86_64";
-            } else if (context.arch === "arm64") {
-                srcDir = "tools/python-embed-mac-arm64";
-            }
-            srcDir = "tools/python-embed-mac-x86_64";
-            if (srcDir) {
-                const destDir = path.join(resourcesDir, srcDir);
-                fs.cpSync(srcDir, destDir, { recursive: true });
-            }
         }
     },
 };
