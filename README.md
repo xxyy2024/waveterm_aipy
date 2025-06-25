@@ -99,3 +99,8 @@ rm -rf ./include
 rm -rf ./lib/python3.11/test
 rm -rf ./lib/python3.11/pycache
 # copy python-embed-mac-arm64 to target
+
+build
+
+task package  -- --mac --x64
+```
