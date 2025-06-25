@@ -8,13 +8,7 @@ OS_TYPE="$(uname)"
 ARCH_TYPE="$(uname -m)"
 
 if [[ "$OS_TYPE" == "Darwin" ]]; then
-  if [[ "$ARCH_TYPE" == "arm64" ]]; then
-    # macOS M1/M2/M3
-    APP_DIR="tools/prompt-optimizer/max-arm64"
-  else
-    # macOS Intel
-    APP_DIR="tools/prompt-optimizer/max-x64"
-  fi
+  APP_DIR="tools/prompt-optimizer/mac"
 elif [[ "$OS_TYPE" == "Linux" ]]; then
   # Linux 平台
   APP_DIR="tools/prompt-optimizer/linux"

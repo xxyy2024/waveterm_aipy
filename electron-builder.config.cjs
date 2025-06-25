@@ -41,6 +41,7 @@ const config = {
         "tools/*.sh",
         "tools/*.ps1",
         "tools/*.yaml",
+        "tools/prompt-optimizer/mac/**/*",
     ],
     mac: {
         target: [
