@@ -46,7 +46,7 @@ func GetStarterLayout() PortableLayout {
 		{IndexArr: []int{1}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
 				waveobj.MetaKey_View: "web",
-				waveobj.MetaKey_Url:  "https://www.aipyaipy.com/",
+				waveobj.MetaKey_Url:  "https://search.jina.ai/",
 			},
 		}},
 
@@ -86,7 +86,7 @@ func GetStarterLayout() PortableLayout {
 	// 	{IndexArr: []int{1, 1}, BlockDef: &waveobj.BlockDef{
 	// 		Meta: waveobj.MetaMapType{
 	// 			waveobj.MetaKey_View: "web",
-	// 			waveobj.MetaKey_Url:  "https://www.aipyaipy.com/",
+	// 			waveobj.MetaKey_Url:  "https://search.jina.ai/",
 	// 		},
 	// 	}},
 	// 	{IndexArr: []int{1, 2}, BlockDef: &waveobj.BlockDef{
@@ -146,13 +146,11 @@ func GetPromptCmd() string {
 }
 
 func GetNewTabLayout() PortableLayout {
-	layoutCmd := GetLayoutTabCmd()
 	return PortableLayout{
 		{IndexArr: []int{0}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
 				waveobj.MetaKey_View:       "term",
-				waveobj.MetaKey_Controller: "cmd",
-				waveobj.MetaKey_Cmd:        layoutCmd,
+				waveobj.MetaKey_Controller: "shell",
 			},
 		}, Focused: true},
 	}
