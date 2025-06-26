@@ -54,7 +54,7 @@ var Dev_VarCache string        // caches WAVETERM_DEV
 const WaveLockFile = "wave.lock"
 const DomainSocketBaseName = "wave.sock"
 const RemoteDomainSocketBaseName = "wave-remote.sock"
-const WaveDBDir = "db"
+const WaveDBDir = "db_v1"
 const JwtSecret = "waveterm" // TODO generate and store this
 const ConfigDir = "config"
 const RemoteWaveHomeDirName = ".waveterm"

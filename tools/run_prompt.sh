@@ -24,6 +24,6 @@ if [ ! -f ~/.prompt-optimizer/config.yaml ]; then
 fi
 
 
-
+echo "Start Prompt Optimizer..."
 # 启动 Python 应用
 "${BASE_DIR}/${APP_DIR}/app"  interactive -c  ~/.prompt-optimizer/config.yaml

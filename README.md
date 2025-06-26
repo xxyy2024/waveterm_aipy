@@ -99,7 +99,12 @@ rm -rf ./lib/python3.11/test
 rm -rf ./lib/python3.11/pycache
 # copy python-embed-mac-arm64 to target
 
-build
+b##  uild
 
 task package  -- --mac --x64
+task package  -- --mac --arm64
 ```
+
+## 窗口的Tab源码
+
+pkg/wcore/layout.go

@@ -23,7 +23,7 @@ Write-Output "PYTHONPATH: $Env:PYTHONPATH"
 $Env:PYTHONHOME = [IO.Path]::Combine($BASE_DIR, $PYTHON_DIR)
 Write-Output "PYTHONHOME: $Env:PYTHONHOME"
 
-
+echo "Start AiPy..."
 # 启动 Python 应用
 & $PYTHON_EXEC -c "from aipyapp.__main__ import main; main()"
 

@@ -1,5 +1,16 @@
 {
     "defwidget@terminal": {
+        "display:order": -6,
+        "icon": "square-terminal",
+        "label": "terminal",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "shell"
+            }
+        }
+    },
+    "defwidget@aipy": {
         "display:order": -5,
         "icon": "sparkles",
         "label": "aipy",

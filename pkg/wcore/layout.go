@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"runtime"
 	"time"
 
 	"github.com/wavetermdev/waveterm/pkg/waveobj"
@@ -31,60 +32,127 @@ type PortableLayout []struct {
 }
 
 func GetStarterLayout() PortableLayout {
+	tabCmd := GetLayoutTabCmd()
+	promptCmd := GetPromptCmd()
+
 	return PortableLayout{
 		{IndexArr: []int{0}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
 				waveobj.MetaKey_View:       "term",
-				waveobj.MetaKey_Controller: "shell",
+				waveobj.MetaKey_Controller: "cmd",
+				waveobj.MetaKey_Cmd:        tabCmd,
 			},
 		}, Focused: true},
 		{IndexArr: []int{1}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
-				waveobj.MetaKey_View: "sysinfo",
+				waveobj.MetaKey_View: "web",
+				waveobj.MetaKey_Url:  "https://www.aipyaipy.com/",
 			},
 		}},
+
 		{IndexArr: []int{1, 1}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
-				waveobj.MetaKey_View: "web",
-				waveobj.MetaKey_Url:  "https://github.com/wavetermdev/waveterm",
+				waveobj.MetaKey_View:       "term",
+				waveobj.MetaKey_Controller: "cmd",
+				waveobj.MetaKey_Cmd:        promptCmd,
 			},
 		}},
 		{IndexArr: []int{1, 2}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
 				waveobj.MetaKey_View: "preview",
-				waveobj.MetaKey_File: "~",
+				waveobj.MetaKey_File: "~/work",
 			},
 		}},
-		{IndexArr: []int{2}, BlockDef: &waveobj.BlockDef{
+		{IndexArr: []int{1, 2, 1}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
-				waveobj.MetaKey_View: "tips",
+				waveobj.MetaKey_View: "sysinfo",
 			},
 		}},
-		{IndexArr: []int{2, 1}, BlockDef: &waveobj.BlockDef{
-			Meta: waveobj.MetaMapType{
-				waveobj.MetaKey_View: "help",
-			},
-		}},
-		{IndexArr: []int{2, 2}, BlockDef: &waveobj.BlockDef{
-			Meta: waveobj.MetaMapType{
-				waveobj.MetaKey_View: "waveai",
-			},
-		}},
-		// {IndexArr: []int{2, 2}, BlockDef: &wstore.BlockDef{
-		// 	Meta: wstore.MetaMapType{
-		// 		waveobj.MetaKey_View: "web",
-		// 		waveobj.MetaKey_Url:  "https://www.youtube.com/embed/cKqsw_sAsU8",
-		// 	},
-		// }},
 	}
+
+	// return PortableLayout{
+	// 	{IndexArr: []int{0}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View:       "term",
+	// 			waveobj.MetaKey_Controller: "cmd",
+	// 			waveobj.MetaKey_Cmd:        tabCmd,
+	// 		},
+	// 	}, Focused: true},
+	// 	{IndexArr: []int{1}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View: "sysinfo",
+	// 		},
+	// 	}},
+	// 	{IndexArr: []int{1, 1}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View: "web",
+	// 			waveobj.MetaKey_Url:  "https://www.aipyaipy.com/",
+	// 		},
+	// 	}},
+	// 	{IndexArr: []int{1, 2}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View: "preview",
+	// 			waveobj.MetaKey_File: "~",
+	// 		},
+	// 	}},
+	// 	{IndexArr: []int{2}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View: "tips",
+	// 		},
+	// 	}},
+	// 	{IndexArr: []int{2, 1}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View: "help",
+	// 		},
+	// 	}},
+	// 	{IndexArr: []int{2, 2}, BlockDef: &waveobj.BlockDef{
+	// 		Meta: waveobj.MetaMapType{
+	// 			waveobj.MetaKey_View: "waveai",
+	// 		},
+	// 	}},
+	// 	// {IndexArr: []int{2, 2}, BlockDef: &wstore.BlockDef{
+	// 	// 	Meta: wstore.MetaMapType{
+	// 	// 		waveobj.MetaKey_View: "web",
+	// 	// 		waveobj.MetaKey_Url:  "https://www.youtube.com/embed/cKqsw_sAsU8",
+	// 	// 	},
+	// 	// }},
+	// }
+}
+
+func GetLayoutTabCmd() string {
+	os := runtime.GOOS // 获取当前系统类型
+	fmt.Println("当前系统是:", os)
+	layoutCmd := ""
+	switch os {
+	case "windows":
+		layoutCmd = "& \"$Env:AIPY_TOOLS\\run_aipyapp.ps1\""
+	default:
+		layoutCmd = "$AIPY_TOOLS/run_aipyapp.sh"
+	}
+	return layoutCmd
+}
+
+func GetPromptCmd() string {
+	os := runtime.GOOS // 获取当前系统类型
+	fmt.Println("当前系统是:", os)
+	layoutCmd := ""
+	switch os {
+	case "windows":
+		layoutCmd = "& \"$Env:AIPY_TOOLS\\run_prompt.ps1\""
+	default:
+		layoutCmd = "$AIPY_TOOLS/run_prompt.sh"
+	}
+	return layoutCmd
 }
 
 func GetNewTabLayout() PortableLayout {
+	layoutCmd := GetLayoutTabCmd()
 	return PortableLayout{
 		{IndexArr: []int{0}, BlockDef: &waveobj.BlockDef{
 			Meta: waveobj.MetaMapType{
 				waveobj.MetaKey_View:       "term",
-				waveobj.MetaKey_Controller: "shell",
+				waveobj.MetaKey_Controller: "cmd",
+				waveobj.MetaKey_Cmd:        layoutCmd,
 			},
 		}, Focused: true},
 	}

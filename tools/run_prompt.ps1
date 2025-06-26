@@ -20,6 +20,6 @@ if (!(Test-Path $configFile)) {
 	Copy-Item $sourceFile $configFile
 }
 
-
+echo "Start Prompt Optimizer..."
 # 启动 Python 应用
 & $APP_EXEC  "interactive" "-c" $configFile

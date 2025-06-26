@@ -345,6 +345,7 @@ func SetActiveTab(ctx context.Context, workspaceId string, tabId string) error {
 			return fmt.Errorf("tab not found: %q", tabId)
 		}
 		workspace.ActiveTabId = tabId
+		log.Printf("SetActiveTab %s %s\n", workspaceId, tabId)
 		wstore.DBUpdate(ctx, workspace)
 	}
 	return nil
