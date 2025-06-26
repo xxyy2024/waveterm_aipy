@@ -82,7 +82,11 @@ export default defineConfig({
             react({}),
             tailwindcss(),
             viteStaticCopy({
-                targets: [{ src: "node_modules/monaco-editor/min/vs/*", dest: "monaco" }],
+                targets: [
+                    { src: "node_modules/monaco-editor/min/vs/*", dest: "monaco" },
+                    { src: "public/fontawesome/webfonts/*", dest: "fontawesome/webfonts" },
+                    { src: "public/icons/*", dest: "icons" },
+                ],
             }),
         ],
     },

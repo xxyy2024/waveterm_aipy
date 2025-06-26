@@ -108,7 +108,9 @@ const Widgets = memo(() => {
             className="flex flex-col w-12 overflow-hidden py-1 -ml-1 select-none"
             onContextMenu={handleWidgetsBarContextMenu}
         >
-            {widgets?.map((data, idx) => <Widget key={`widget-${idx}`} widget={data} />)}
+            {widgets?.map((data, idx) => (
+                <Widget key={`widget-${idx}`} widget={data} />
+            ))}
             <div className="flex-grow" />
             {showHelp ? (
                 <>
@@ -126,7 +128,31 @@ async function handleWidgetSelect(widget: WidgetConfigType) {
     createBlock(blockDef, widget.magnified);
 }
 
+// const Widget = memo(({ widget }: { widget: WidgetConfigType }) => {
+//     return (
+//         <div
+//             className={clsx(
+//                 "flex flex-col justify-center items-center w-full py-1.5 pr-0.5 text-secondary text-lg overflow-hidden rounded-sm hover:bg-hoverbg hover:text-white cursor-pointer",
+//                 widget["display:hidden"] && "hidden"
+//             )}
+//             onClick={() => handleWidgetSelect(widget)}
+//             title={widget.description || widget.label}
+//         >
+//             <div style={{ color: widget.color }}>
+//                 <i className={makeIconClass(widget.icon, true, { defaultIcon: "browser" })}></i>
+//             </div>
+//             {!isBlank(widget.label) ? (
+//                 <div className="text-xxs mt-0.5 w-full px-0.5 text-center whitespace-nowrap overflow-hidden">
+//                     {widget.label}
+//                 </div>
+//             ) : null}
+//         </div>
+//     );
+// });
+
 const Widget = memo(({ widget }: { widget: WidgetConfigType }) => {
+    const isImage = widget.icon && (widget.icon.endsWith(".png") || widget.icon.endsWith(".svg"));
+
     return (
         <div
             className={clsx(
@@ -137,7 +163,15 @@ const Widget = memo(({ widget }: { widget: WidgetConfigType }) => {
             title={widget.description || widget.label}
         >
             <div style={{ color: widget.color }}>
-                <i className={makeIconClass(widget.icon, true, { defaultIcon: "browser" })}></i>
+                {isImage ? (
+                    <img
+                        src={`/${widget.icon}`}
+                        alt={widget.label}
+                        style={{ width: "20px", height: "20px", objectFit: "contain" }}
+                    />
+                ) : (
+                    <i className={makeIconClass(widget.icon, true, { defaultIcon: "browser" })}></i>
+                )}
             </div>
             {!isBlank(widget.label) ? (
                 <div className="text-xxs mt-0.5 w-full px-0.5 text-center whitespace-nowrap overflow-hidden">

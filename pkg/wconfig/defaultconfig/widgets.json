@@ -1,18 +1,7 @@
 {
-    "defwidget@terminal": {
-        "display:order": -6,
-        "icon": "square-terminal",
-        "label": "terminal",
-        "blockdef": {
-            "meta": {
-                "view": "term",
-                "controller": "shell"
-            }
-        }
-    },
     "defwidget@aipy": {
-        "display:order": -5,
-        "icon": "sparkles",
+        "display:order": -6,
+        "icon": "icons/aipy.png",
         "label": "aipy",
         "blockdef": {
             "meta": {
@@ -26,8 +15,8 @@
         }
     },
     "defwidget@prompt": {
-        "display:order": -4,
-        "icon": "brain",
+        "display:order": -5,
+        "icon": "icons/prompt.png",
         "label": "prompt",
         "blockdef": {
             "meta": {
@@ -41,8 +30,8 @@
         }
     },
     "defwidget@files": {
-        "display:order": -3,
-        "icon": "folder",
+        "display:order": -4,
+        "icon": "icons/files.png",
         "label": "files",
         "blockdef": {
             "meta": {
@@ -52,8 +41,8 @@
         }
     },
     "defwidget@web": {
-        "display:order": -2,
-        "icon": "globe",
+        "display:order": -3,
+        "icon": "icons/web.png",
         "label": "web",
         "blockdef": {
             "meta": {
@@ -62,12 +51,23 @@
         }
     },
     "defwidget@sysinfo": {
-        "display:order": -1,
-        "icon": "chart-line",
+        "display:order": -2,
+        "icon": "icons/sysinfo.png",
         "label": "sysinfo",
         "blockdef": {
             "meta": {
                 "view": "sysinfo"
+            }
+        }
+    },
+    "defwidget@terminal": {
+        "display:order": -1,
+        "icon": "icons/terminal.png",
+        "label": "terminal",
+        "blockdef": {
+            "meta": {
+                "view": "term",
+                "controller": "shell"
             }
         }
     }
