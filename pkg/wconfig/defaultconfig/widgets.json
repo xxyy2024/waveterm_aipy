@@ -1,6 +1,6 @@
 {
     "defwidget@aipy": {
-        "display:order": -6,
+        "display:order": -7,
         "icon": "icons/aipy.png",
         "label": "aipy",
         "blockdef": {
@@ -15,7 +15,7 @@
         }
     },
     "defwidget@prompt": {
-        "display:order": -5,
+        "display:order": -6,
         "icon": "icons/prompt.png",
         "label": "prompt",
         "blockdef": {
@@ -30,7 +30,7 @@
         }
     },
     "defwidget@files": {
-        "display:order": -4,
+        "display:order": -5,
         "icon": "icons/files.png",
         "label": "files",
         "blockdef": {
@@ -41,22 +41,34 @@
         }
     },
     "defwidget@web": {
-        "display:order": -3,
+        "display:order": -4,
         "icon": "icons/web.png",
         "label": "web",
         "blockdef": {
             "meta": {
-                "view": "web"
+                "view": "web",
+                "url": "https://www.aipy.app"
             }
         }
     },
     "defwidget@sysinfo": {
-        "display:order": -2,
+        "display:order": -3,
         "icon": "icons/sysinfo.png",
         "label": "sysinfo",
         "blockdef": {
             "meta": {
                 "view": "sysinfo"
+            }
+        }
+    },
+    "defwidget@deepsearch": {
+        "display:order": -2,
+        "icon": "icons/deepsearch.png",
+        "label": "jina",
+        "blockdef": {
+            "meta": {
+                "view": "web",
+                "url": "https://search.jina.ai"
             }
         }
     },
@@ -68,6 +80,16 @@
             "meta": {
                 "view": "term",
                 "controller": "shell"
+            }
+        }
+    },
+    "defwidget@ai": {
+        "display:order": 0,
+        "icon": "icons/ai.png",
+        "label": "ai",
+        "blockdef": {
+            "meta": {
+                "view": "waveai"
             }
         }
     }
