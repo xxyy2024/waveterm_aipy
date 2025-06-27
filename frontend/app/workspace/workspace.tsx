@@ -170,7 +170,7 @@ const Widget = memo(({ widget }: { widget: WidgetConfigType }) => {
                     <img
                         src={cleanIconPath}
                         alt={widget.label}
-                        style={{ width: "20px", height: "20px", objectFit: "contain" }}
+                        style={{ width: "27px", height: "27px", objectFit: "contain" }}
                     />
                 ) : (
                     <i className={makeIconClass(widget.icon, true, { defaultIcon: "browser" })}></i>
