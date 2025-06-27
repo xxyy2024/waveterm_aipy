@@ -42,6 +42,38 @@ import (
 	"github.com/wavetermdev/waveterm/pkg/wstore"
 )
 
+func init() {
+	claude_env()
+}
+
+func claude_env() {
+	// 获取当前工作目录
+	wd, err := os.Getwd()
+	if err != nil {
+		log.Println("获取当前目录失败:", err)
+		return
+	}
+
+	// 构建平台兼容的路径
+	toolPath := filepath.Join(wd, "dist", "claude-code", "bin")
+
+	// 根据系统决定路径分隔符
+	pathSep := ":"
+	if runtime.GOOS == "windows" {
+		pathSep = ";"
+	}
+
+	// 拼接 PATH 并设置环境变量
+	newPath := os.Getenv("PATH") + pathSep + toolPath
+	err = os.Setenv("PATH", newPath)
+	if err != nil {
+		log.Println("设置环境变量失败:", err)
+		return
+	}
+
+	log.Println("已更新 PATH：", os.Getenv("PATH"))
+}
+
 // these are set at build time
 var WaveVersion = "0.0.0"
 var BuildTime = "0"

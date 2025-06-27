@@ -221,6 +221,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@anthropic-ai/claude-code@npm:^1.0.35":
+  version: 1.0.35
+  resolution: "@anthropic-ai/claude-code@npm:1.0.35"
+  dependencies:
+    "@img/sharp-darwin-arm64": "npm:^0.33.5"
+    "@img/sharp-darwin-x64": "npm:^0.33.5"
+    "@img/sharp-linux-arm": "npm:^0.33.5"
+    "@img/sharp-linux-arm64": "npm:^0.33.5"
+    "@img/sharp-linux-x64": "npm:^0.33.5"
+    "@img/sharp-win32-x64": "npm:^0.33.5"
+  dependenciesMeta:
+    "@img/sharp-darwin-arm64":
+      optional: true
+    "@img/sharp-darwin-x64":
+      optional: true
+    "@img/sharp-linux-arm":
+      optional: true
+    "@img/sharp-linux-arm64":
+      optional: true
+    "@img/sharp-linux-x64":
+      optional: true
+    "@img/sharp-win32-x64":
+      optional: true
+  bin:
+    claude: cli.js
+  checksum: 10c0/a0702c32e1a4844b041a9923f33dc4a1c29c9b399dcea6b4355bf973696a1f1b1dc2fe2b9a4501f174c826f3af831344f0870442e72b0015832684bb91829ff9
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.21.4, @babel/code-frame@npm:^7.27.1":
   version: 7.27.1
   resolution: "@babel/code-frame@npm:7.27.1"
@@ -3226,7 +3255,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-darwin-arm64@npm:0.33.5":
+"@img/sharp-darwin-arm64@npm:0.33.5, @img/sharp-darwin-arm64@npm:^0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-darwin-arm64@npm:0.33.5"
   dependencies:
@@ -3238,7 +3267,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-darwin-x64@npm:0.33.5":
+"@img/sharp-darwin-x64@npm:0.33.5, @img/sharp-darwin-x64@npm:^0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-darwin-x64@npm:0.33.5"
   dependencies:
@@ -3306,7 +3335,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-arm64@npm:0.33.5":
+"@img/sharp-linux-arm64@npm:0.33.5, @img/sharp-linux-arm64@npm:^0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-linux-arm64@npm:0.33.5"
   dependencies:
@@ -3318,7 +3347,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-arm@npm:0.33.5":
+"@img/sharp-linux-arm@npm:0.33.5, @img/sharp-linux-arm@npm:^0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-linux-arm@npm:0.33.5"
   dependencies:
@@ -3342,7 +3371,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-linux-x64@npm:0.33.5":
+"@img/sharp-linux-x64@npm:0.33.5, @img/sharp-linux-x64@npm:^0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-linux-x64@npm:0.33.5"
   dependencies:
@@ -3394,7 +3423,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@img/sharp-win32-x64@npm:0.33.5":
+"@img/sharp-win32-x64@npm:0.33.5, @img/sharp-win32-x64@npm:^0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-win32-x64@npm:0.33.5"
   conditions: os=win32 & cpu=x64
@@ -21252,6 +21281,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "waveterm-aipy@workspace:."
   dependencies:
+    "@anthropic-ai/claude-code": "npm:^1.0.35"
     "@chromatic-com/storybook": "npm:^3.2.6"
     "@eslint/js": "npm:^9.20.0"
     "@floating-ui/react": "npm:^0.27.4"

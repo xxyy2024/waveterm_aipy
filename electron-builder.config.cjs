@@ -136,6 +136,10 @@ const config = {
                 .filter((f) => f.isFile() && f.name.startsWith("wavesrv"))
                 .forEach((f) => fs.chmodSync(path.resolve(f.parentPath ?? f.path, f.name), 0o755));
         }
+        fs.copySync(
+            path.join(__dirname, "../node_modules/@anthropic-ai/claude-code"),
+            path.join(__dirname, "../dist/claude-code")
+        );
     },
 };
 
