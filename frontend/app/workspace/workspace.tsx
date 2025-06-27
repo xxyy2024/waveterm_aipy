@@ -112,7 +112,7 @@ const Widgets = memo(() => {
                 <Widget key={`widget-${idx}`} widget={data} />
             ))}
             <div className="flex-grow" />
-            {showHelp ? (
+            {false ? (
                 <>
                     <Widget key="tips" widget={tipsWidget} />
                     <Widget key="help" widget={helpWidget} />
