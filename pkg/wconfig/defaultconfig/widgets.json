@@ -1,7 +1,7 @@
 {
     "defwidget@aipy": {
         "display:order": -7,
-        "icon": "icons/aipy.png",
+        "icon": "./icons/aipy.png",
         "label": "aipy",
         "blockdef": {
             "meta": {
@@ -16,7 +16,7 @@
     },
     "defwidget@prompt": {
         "display:order": -6,
-        "icon": "icons/prompt.png",
+        "icon": "./icons/prompt.png",
         "label": "prompt",
         "blockdef": {
             "meta": {
@@ -42,7 +42,7 @@
     },
     "defwidget@web": {
         "display:order": -4,
-        "icon": "icons/web.png",
+        "icon": "./icons/web.png",
         "label": "web",
         "blockdef": {
             "meta": {
@@ -53,7 +53,7 @@
     },
     "defwidget@sysinfo": {
         "display:order": -3,
-        "icon": "icons/sysinfo.png",
+        "icon": "./icons/sysinfo.png",
         "label": "sysinfo",
         "blockdef": {
             "meta": {
@@ -63,7 +63,7 @@
     },
     "defwidget@deepsearch": {
         "display:order": -2,
-        "icon": "icons/deepsearch.png",
+        "icon": "./icons/deepsearch.png",
         "label": "jina",
         "blockdef": {
             "meta": {
@@ -74,7 +74,7 @@
     },
     "defwidget@terminal": {
         "display:order": -1,
-        "icon": "icons/terminal.png",
+        "icon": "./icons/terminal.png",
         "label": "terminal",
         "blockdef": {
             "meta": {
@@ -85,7 +85,7 @@
     },
     "defwidget@ai": {
         "display:order": 0,
-        "icon": "icons/ai.png",
+        "icon": "./icons/ai.png",
         "label": "ai",
         "blockdef": {
             "meta": {

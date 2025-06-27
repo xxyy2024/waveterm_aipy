@@ -49,5 +49,6 @@
     },
     "files.associations": {
         "*.css": "tailwindcss"
-    }
+	},
+	"git.ignoreLimitWarning": true
 }

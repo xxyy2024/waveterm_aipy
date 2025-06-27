@@ -151,7 +151,10 @@ async function handleWidgetSelect(widget: WidgetConfigType) {
 // });
 
 const Widget = memo(({ widget }: { widget: WidgetConfigType }) => {
+    console.log("widget.icon =", widget.icon);
+
     const isImage = widget.icon && (widget.icon.endsWith(".png") || widget.icon.endsWith(".svg"));
+    const cleanIconPath = widget.icon?.startsWith("./") ? widget.icon.slice(2) : widget.icon;
 
     return (
         <div
@@ -165,7 +168,7 @@ const Widget = memo(({ widget }: { widget: WidgetConfigType }) => {
             <div style={{ color: widget.color }}>
                 {isImage ? (
                     <img
-                        src={`/${widget.icon}`}
+                        src={cleanIconPath}
                         alt={widget.label}
                         style={{ width: "20px", height: "20px", objectFit: "contain" }}
                     />

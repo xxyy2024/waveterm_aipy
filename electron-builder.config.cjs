@@ -18,19 +18,20 @@ const config = {
         {
             from: "./dist",
             to: "./dist",
-            filter: ["**/*", "!bin/*", "bin/wavesrv.${arch}*", "bin/wsh*"],
+            filter: ["**/*", "!bin/*", "bin/wavesrv.${arch}*", "bin/wsh*", "frontend/**"],
         },
         {
             from: ".",
             to: ".",
             filter: ["package.json"],
         },
+
         "!node_modules",
     ],
     directories: {
         output: "make",
     },
-    extraResources: ["tools/*.sh", "tools/*.ps1", "tools/*.yaml"],
+    extraResources: ["tools/*.sh", "tools/*.ps1", "tools/*.yaml", "node_modules/@anthropic-ai/claude-code/**/*"],
     asarUnpack: [
         "dist/bin/**/*",
         "dist/docsite/**/*",
@@ -42,6 +43,8 @@ const config = {
         "tools/*.ps1",
         "tools/*.yaml",
         "tools/prompt-optimizer/mac/**/*",
+        "dist/claude",
+        "dist/frontend/**/*",
     ],
     mac: {
         target: [
@@ -123,6 +126,7 @@ const config = {
         provider: "generic",
         url: "https://dl.waveterm.dev/releases-w2",
     },
+
     afterPack: (context) => {
         if (context.electronPlatformName === "darwin" && context.arch === Arch.universal) {
             const packageBinDir = path.resolve(
@@ -136,10 +140,22 @@ const config = {
                 .filter((f) => f.isFile() && f.name.startsWith("wavesrv"))
                 .forEach((f) => fs.chmodSync(path.resolve(f.parentPath ?? f.path, f.name), 0o755));
         }
-        fs.copySync(
-            path.join(__dirname, "../node_modules/@anthropic-ai/claude-code"),
-            path.join(__dirname, "../dist/claude-code")
-        );
+        if (context.electronPlatformName === "darwin" || context.electronPlatformName === "linux") {
+            const packageBinDir = path.resolve(
+                context.appOutDir,
+                context.electronPlatformName === "darwin"
+                    ? `${pkg.productName}.app/Contents/Resources/app.asar.unpacked/dist`
+                    : `${context.appOutDir}/dist`
+            );
+            const claudePath = path.resolve(packageBinDir, "claude");
+            if (fs.existsSync(claudePath)) {
+                fs.chmodSync(claudePath, 0o755);
+            }
+            const claudeCodeJsPath = path.resolve(packageBinDir, "claude-code.js");
+            if (fs.existsSync(claudeCodeJsPath)) {
+                fs.chmodSync(claudeCodeJsPath, 0o755);
+            }
+        }
     },
 };
 

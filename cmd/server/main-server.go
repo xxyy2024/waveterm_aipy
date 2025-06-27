@@ -55,7 +55,7 @@ func claude_env() {
 	}
 
 	// 构建平台兼容的路径
-	toolPath := filepath.Join(wd, "dist", "claude-code", "bin")
+	toolPath := filepath.Join(wd, "dist", "bin")
 
 	// 根据系统决定路径分隔符
 	pathSep := ":"
